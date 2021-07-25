@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Auth::routes();
 
 // Auth::routes(["register" => false]); || per disattivare la registrazione
