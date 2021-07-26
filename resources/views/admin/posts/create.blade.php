@@ -1,0 +1,38 @@
+@extends('layouts.app')
+
+@section('content')
+    <div class="container">
+        <h1 class="my-4">Scrivi nuovo articolo</h1>
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <form action="{{ route('admin.posts.store') }}" method="POST">
+            @csrf
+            @method('POST')
+            <div class="form-group">
+                <label for="title">Titolo</label>
+                <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" placeholder="Enter article's title">
+                @error('title')
+                    <small>{{ $message }}</small>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="content">Testo</label>
+                <textarea class="form-control @error('content') is-invalid @enderror" name="content" placeholder="Enter article's text" rows="6">{{ old('content') }}</textarea>
+                @error('content')
+                    <small>{{ $message }}</small>
+                @enderror
+            </div>
+            <button type="submit" class="btn btn-primary">Crea</button>
+            <a class="btn btn-secondary ml-2" href="{{ route('admin.posts.index') }}">Elenco Post</a>
+        </form>
+    </div>
+@endsection

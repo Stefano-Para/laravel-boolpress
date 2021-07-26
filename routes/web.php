@@ -32,4 +32,10 @@ Route::middleware('auth') // autenticazione
 
 
 // rotte pubbliche
-Route::get('/', 'HomeController@index')->name('home');
+// Route::get('/', 'HomeController@index')->name('home');
+
+// rotta di fallback - DA METTERE SEMPRE PER ULTIMA
+Route::get('{any?}', 'HomeController@index')->where('any', '.*')->name('home');
+// sarebbe
+// Route::get('{any?}', function() {
+//     return view('guest.home');
