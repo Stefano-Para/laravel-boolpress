@@ -13,17 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
 Auth::routes();
-
 // Auth::routes(["register" => false]); || per disattivare la registrazione
 // Auth::routes(["register" => true]);
 // Auth::routes(["verify" => false]); 
 // Auth::routes(["verify" => true]); || per attivare la verifica email al momento della registrazione
 
+// creazione gruppo di rotte protette da autenticazione ADMIN middleware('auth')
+Route::middleware('auth') // autenticazione
+    ->namespace('Admin')  // controller
+    ->name('admin.')      // nome rotte
+    ->prefix('admin')     // url rotte
+    ->group(function () {
 
-Route::get('/home', 'HomeController@index')->name('home');
+        Route::get('/', 'HomeController@index')->name('home');
+        Route::resource('posts', 'PostController');
+});
+
+
+// rotte pubbliche
+Route::get('/', 'HomeController@index')->name('home');

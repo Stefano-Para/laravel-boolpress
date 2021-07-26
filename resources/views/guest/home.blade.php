@@ -9,6 +9,9 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
+        {{-- css link  --}}
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
         <!-- Styles -->
         <style>
             html, body {
