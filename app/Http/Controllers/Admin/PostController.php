@@ -15,7 +15,7 @@ class PostController extends Controller
         'title' => 'required|max:255',
         'content' => 'required',
         'category_id' => 'nullable|exists:categories,id',
-        'tags' => 'exists:tag,id'
+        'tags' => 'exists:tags,id'
     ];
 
     private function generateSlug($data) {
@@ -42,7 +42,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(5);
 
         return view('admin.posts.index', compact('posts'));
     }
@@ -69,8 +69,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        dd($data);
-
+        // dd($data);
         $request->validate($this->postValidationArray);
 
         // creazione e salvataggio istanza classe Post
@@ -120,8 +119,9 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all();
+        $tags = Tag::all();
 
-        return view('admin.posts.edit', compact('post', 'categories'));
+        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -146,6 +146,13 @@ class PostController extends Controller
 
         $post->update($data);
 
+        if(array_key_exists('tags', $data)) {
+            $post->tags()->sync($data["tags"]);
+        } else {
+            // $post->tags->sync([]);
+            $post->tags()->deatach();
+        }
+
         return redirect()->route('admin.posts.show', $post->id);
     }
 
@@ -157,6 +164,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        // in alternativa alla onDelete('CASCADE) nella foreign key tabella pivat
+        // $post->tags()->detach();
+
         $post->delete();
 
         return redirect()

@@ -49,10 +49,17 @@
                 <h5>Tags</h5>
                 @foreach ($tags as $tag)
                 <div class="form-check form-check-inline">
-                    <input type="checkbox"  name="tags[]" class="form-check-input" id="tag-{{ $tag->id }}" value="{{ $tag->id }}" {{ in_array($tag->id, old('tags', [])) ? 'checked' : ''}}>
+                    <input type="checkbox"  name="tags[]" class="form-check-input" id="tag-{{ $tag->id }}" value="{{ $tag->id }}"
+                    {{ in_array($tag->id, old('tags', [])) ? 'checked' : ''}}
+                    >
                     <label class="form-check-label" for="tag-{{ $tag->id }}">{{ $tag->name }}</label>
                 </div>
                 @endforeach
+                @error('tags')
+                    <div>
+                        <small class="text-danger d-block">{{ $message }}</small>
+                    </div>
+                @enderror
             </div>
 
             <button type="submit" class="btn btn-primary">Crea</button>

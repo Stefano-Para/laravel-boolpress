@@ -32,6 +32,11 @@
                             @endif
                         </td>
                         <td>
+                            @foreach ($item->tags as $tag)
+                                <span class="badge badge-pill badge-dark"> {{ $tag->name }} </span>
+                            @endforeach
+                        </td>
+                        <td>
                             <a class="btn btn-success" href="{{ route('admin.posts.show', $item->id) }}">SHOW</a>
                         </td>      
                         <td>
@@ -48,5 +53,7 @@
                 @endforeach
             </tbody>
         </table>
+
+        {{ $posts->links() }}
     </div>
 @endsection

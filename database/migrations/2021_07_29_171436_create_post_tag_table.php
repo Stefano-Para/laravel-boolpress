@@ -13,11 +13,10 @@ class CreatePostTagTable extends Migration
      */
     public function up()
     {
-        // composizione tabella ponte
         Schema::create('post_tag', function (Blueprint $table) {
-            $table->id(); // facoltativo
+            $table->id();
 
-            $table->unsignedBigInteger(('post_id'));
+            $table->unsignedBigInteger('post_id');
             $table->foreign('post_id')
                 ->references('id')
                 ->on('posts')
@@ -25,9 +24,9 @@ class CreatePostTagTable extends Migration
 
             $table->unsignedBigInteger('tag_id');
             $table->foreign('tag_id')
-            ->references('id')
-            ->on('tags')
-            ->onDelete('CASCADE');
+                ->references('id')
+                ->on('tags')
+                ->onDelete('CASCADE');    
 
             // $table->timestamps();
         });
