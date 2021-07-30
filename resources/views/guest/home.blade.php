@@ -7,7 +7,7 @@
         <title>Laravel</title>
 
         <!-- Fonts -->
-        {{-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet"> --}}
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
         {{-- css link  --}}
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -15,9 +15,7 @@
     </head>
     <body>
         
-        <div id="root">
-
-        </div>
+        <div id="root"></div>
 
         <script src="{{ asset('js/front.js') }}"></script>
     </body>

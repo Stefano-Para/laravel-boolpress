@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import WorkInProgress from './components/WorkInProgress.vue';
+import WorkInProgress from './components/WorkInProgress';
 
 export default {
     name: 'App',

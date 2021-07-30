@@ -5,7 +5,10 @@
     <h1>
         {{ $post->title }}
         @if ($post->category)
-            <span class="badge badge-info">{{ $post->category->name}}</span>
+            <a
+                href="{{ route('admin.categories.show', $post->category->id) }}"
+                class="badge badge-info">{{ $post->category->name}}
+            </a>
         @else
             {{-- per categoria non dichiarata  --}}
             <span class="badge badge-secondary">Nessuna categoria associata </span>
