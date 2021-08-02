@@ -9,10 +9,12 @@ Vue.use(VueRouter);
 import Home from './pages/Home';
 import About from './pages/About';
 import Blog from './pages/Blog';
-import SinglePost from './pages/SinglePost.vue'
+import SinglePost from './pages/SinglePost'
+import NotFound from './pages/NotFound'
 
 const router = new VueRouter({
     mode: 'history',
+    linkExactActiveClass: 'active',
     routes: [
         {
             path: '/',
@@ -34,6 +36,12 @@ const router = new VueRouter({
             name: 'single-post',
             component: SinglePost
         },
+        {
+            path: '/*',
+            name: 'not-found',
+            component: NotFound
+        },
+
     ]
 });
 

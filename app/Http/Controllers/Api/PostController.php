@@ -9,8 +9,9 @@ use App\Post;
 
 class PostController extends Controller
 {
+    // archivio dei posts 
     public function index() {
-        $posts = Post::paginate(3);
+        $posts = Post::paginate(5);
 
         // $result = [
         //     'success' => true,
@@ -18,5 +19,14 @@ class PostController extends Controller
         // ];
 
         return response()->json($posts);
+    }
+
+    // dettaglio post 
+    public function show($slug) {
+        $post = Post::where('slug', $slug)
+            ->with(['category', 'tags'])
+            ->first(); // eager loading (in blade, lazy loading)
+
+        return response()->json($post);
     }
 }

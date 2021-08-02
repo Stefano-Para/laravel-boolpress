@@ -1,5 +1,5 @@
 <template>
-  <section class="my-5">
+  <section class="my-5" v-if="posts.length > 0">
       <h1>Il mio blog</h1>
 
             <div class="row">
@@ -8,7 +8,7 @@
                 :item="post"
                 />
             </div>
-            <div class="text-center">
+            <div class="text-center mb-4">
                 <button
                 v-show="current_page > 1"
                 class="btn btn-info"
@@ -32,15 +32,18 @@
                 </button>
             </div>
   </section>
+  <Loader v-else />
 </template>
 
 <script>
 import Card from '../components/Card';
+import Loader from '../components/Loader';
 
 export default {
     name: 'Blog',
     components: {
-      Card
+      Card,
+      Loader
     },
     data: function() {
         return {

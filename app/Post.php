@@ -13,6 +13,11 @@ class Post extends Model
         'content'
     ];
 
+    // protected $with = [
+    //     'category',
+    //     'tags'
+    // ];
+
     // relazione categories - posts
     public function category() {
         return $this->belongsTo('App\Category');
