@@ -1962,6 +1962,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Card',
   props: {
@@ -2238,6 +2239,11 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Loader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Loader */ "./resources/js/components/Loader.vue");
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3554,6 +3560,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-4 my-3 d-flex" }, [
     _c("div", { staticClass: "card w-100" }, [
+      _c("img", {
+        staticClass: "card-img-top",
+        attrs: { src: _vm.item.cover, alt: _vm.item.title }
+      }),
+      _vm._v(" "),
       _c(
         "div",
         { staticClass: "card-body" },
@@ -4056,6 +4067,13 @@ var render = function() {
                   0
                 )
               : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "d-flex justify-content-center" }, [
+            _c("img", {
+              staticClass: "img-fluid",
+              attrs: { src: _vm.post.cover, alt: _vm.post.name }
+            })
           ]),
           _vm._v(" "),
           _c("p", { staticClass: "my-4" }, [_vm._v(_vm._s(_vm.post.content))]),
@@ -20200,7 +20218,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_About__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/About */ "./resources/js/pages/About.vue");
 /* harmony import */ var _pages_Blog__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/Blog */ "./resources/js/pages/Blog.vue");
 /* harmony import */ var _pages_SinglePost__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/SinglePost */ "./resources/js/pages/SinglePost.vue");
-/* harmony import */ var _pages_NotFound__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/NotFound */ "./resources/js/pages/NotFound.vue");
+/* harmony import */ var _pages_NotFound__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/NotFound */ "./resources/js/pages/NotFound.vue");
 // gestione import dipendenze
 
  // inizializzazione router
@@ -20234,7 +20252,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }, {
     path: '/*',
     name: 'not-found',
-    component: _pages_NotFound__WEBPACK_IMPORTED_MODULE_7__["default"]
+    component: _pages_NotFound__WEBPACK_IMPORTED_MODULE_6__["default"]
   }]
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);

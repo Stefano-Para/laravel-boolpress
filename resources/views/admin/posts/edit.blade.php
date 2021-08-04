@@ -32,6 +32,24 @@
                     <small>{{ $message }}</small>
                 @enderror
             </div>
+
+            {{-- upload  --}}
+            <div class="form-group mb-5">
+                <label for="cover" >Immagine del post</label>
+
+                @if ($post->cover)
+                    <div class="mb-2">
+                        <img style="width: 200px" class="img-fluid" src="{{ asset('storage/' . $post->cover) }}" alt="{{ $post->title }}">
+                    </div>
+                @endif
+
+                <input type="file" name="cover" class="form-control-file @error('cover') is-invalid @enderror" id="cover">
+            </div>
+              @error('cover')
+                <small class="text-danger">{{ $message }}</small>
+              @enderror
+            {{-- / upload  --}}
+
             <div class="form-group">
                 <label for="category_id">Categoria</label>
                 <select class="form-control @error('category_id') is-invalid @enderror" name="category_id" id="category_id" >
@@ -68,6 +86,7 @@
                     </div>
                 @enderror
             </div>
+            {{-- / tags  --}}
 
             <button type="submit" class="btn btn-primary">Salve modifica</button>
             <a class="btn btn-secondary ml-2" href="{{ route('admin.posts.index') }}">Elenco Post</a>

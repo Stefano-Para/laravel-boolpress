@@ -14,7 +14,7 @@
             </div>
         @endif
 
-        <form action="{{ route('admin.posts.store') }}" method="POST">
+        <form action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('POST')
             <div class="form-group">
@@ -36,7 +36,10 @@
                 <select class="form-control @error('category_id') is-invalid @enderror" name="category_id" id="category_id" >
                     <option value="">-- Seleziona una categoria --</option>
                     @foreach ($categories as $category)
-                        <option value="{{ $category->id }}" {{ ($category->id == old('category_id')) ? 'selected' : '' }}>{{ $category->name }}</option>
+                        <option value="{{ $category->id }}"
+                            {{ ($category->id == old('category_id')) ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
                     @endforeach
                 </select>
                 @error('category_id')
@@ -61,6 +64,17 @@
                     </div>
                 @enderror
             </div>
+            {{-- / tags  --}}
+            
+            {{-- upload  --}}
+                <div class="form-group mb-5">
+                  <label for="cover" >Immagine del post</label>
+                  <input type="file" name="cover" class="form-control-file @error('cover') is-invalid @enderror" id="cover">
+                </div>
+                @error('cover')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
+            {{-- / upload  --}}
 
             <button type="submit" class="btn btn-primary">Crea</button>
             <a class="btn btn-secondary ml-2" href="{{ route('admin.posts.index') }}">Elenco Post</a>

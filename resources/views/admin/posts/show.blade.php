@@ -30,11 +30,22 @@
             <h5 class="badge badge-pill badge-dark">Nessun tag collegato</h5>
         </div>
     @endif
+    <div class="row mt-4">
+        <div class="col-md-6">
+            @if ($post->cover)
+                <img class="img-fluid" src="{{ asset('storage/' . $post->cover) }}" alt="{{ $post->title }}">
+            @else
+                <img class="img-fluid" src="{{ asset('images/placeholder.jpg') }}" alt="{{ $post->title }}">
+            @endif
+        </div>
+        <div class="col-md-6">
+            {{ $post->content }}
+        </div>
+    </div>
 
     <div class="mt-3">
         <a class="btn btn-warning" href="{{ route('admin.posts.edit', $post->id) }}">Modifica</a>
         <a class="btn btn-secondary ml-2" href="{{ route('admin.posts.index') }}">Elenco Post</a>
     </div>
-    <div class="mt-3">{{ $post->content }}</div>
     </div>
 @endsection
